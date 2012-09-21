@@ -2,7 +2,6 @@ package com.lds.superkey.server;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -10,6 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import com.lds.superkey.config.Config;
+import com.lds.superkey.config.KeyMap;
 import com.lds.superkey.model.SKMessage;
 
 public class App {
@@ -70,23 +70,10 @@ public class App {
         if (keyCode >= com.lds.superkey.model.KeyEvent.KEYCODE_A
                 && keyCode <= com.lds.superkey.model.KeyEvent.KEYCODE_Z) {
             return keyCode - com.lds.superkey.model.KeyEvent.KEYCODE_A + 'A';
-        }
-        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_UP) {
-            return KeyEvent.VK_UP;
-        }
-        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_DOWN) {
-            return KeyEvent.VK_DOWN;
-        }
-        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_LEFT) {
-            return KeyEvent.VK_LEFT;
-        }
-        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_RIGHT) {
-            return KeyEvent.VK_RIGHT;
         } else {
-            return -1;
+            return KeyMap.getKey(keyCode);
         }
     }
-    
     
     private static boolean longPress = false; 
     
