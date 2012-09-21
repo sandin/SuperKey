@@ -2,6 +2,7 @@ package com.lds.superkey.server;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -15,6 +16,8 @@ import com.lds.superkey.model.SKMessage;
 public class App {
 
     public static void main(String[] args) throws Exception {
+        KeyMap.readConfig();
+        
         System.out.println("listen on port " + Config.PORT);
         ServerSocket ss = new ServerSocket(Config.PORT);
         while (true) {
@@ -42,6 +45,7 @@ public class App {
 
                 Robot robot = new Robot();
                 try {
+                    System.out.println("press key: " + KeyEvent.getKeyText(keyCode));
                     robot.keyPress(keyCode);
                 } catch (IllegalArgumentException e) {
                     // keyCode wrong
@@ -57,22 +61,21 @@ public class App {
                 e1.printStackTrace();
             }
         }
-
     }
 
     /**
-     * 将Android的keycode转成awt的keycode
-     * 
-     * @param keyCode of android
+     * @param keyCode
      * @return
      */
     public static int translateKeyCode(int keyCode) {
+        /*
         if (keyCode >= com.lds.superkey.model.KeyEvent.KEYCODE_A
                 && keyCode <= com.lds.superkey.model.KeyEvent.KEYCODE_Z) {
             return keyCode - com.lds.superkey.model.KeyEvent.KEYCODE_A + 'A';
         } else {
+        */
             return KeyMap.getKey(keyCode);
-        }
+        //}
     }
     
     private static boolean longPress = false; 

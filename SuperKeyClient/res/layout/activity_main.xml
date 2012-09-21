@@ -1,15 +1,103 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-    <Button android:id="@+id/text"
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="fill_parent" >
+
+        <View
+            android:id="@+id/centerPoint"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+             />
+
+        <ImageButton
+            android:id="@+id/key01"
+            style="@style/KeyBtn"
+            android:layout_above="@id/centerPoint"
+            android:layout_centerHorizontal="true"
+            android:text="key01" />
+
+        <ImageButton
+            android:id="@+id/key02"
+            style="@style/KeyBtn"
+            android:layout_below="@id/centerPoint"
+            android:layout_centerHorizontal="true"
+            android:text="key02" />
+
+        <ImageButton
+            android:id="@+id/key03"
+            style="@style/KeyBtn"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/centerPoint"
+            android:text="key03" />
+
+        <ImageButton
+            android:id="@+id/key04"
+            style="@style/KeyBtn"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/centerPoint"
+            android:text="key04" />
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="200dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/key05"
+                style="@style/KeyBtn"
+                android:layout_above="@id/centerPoint"
+                android:layout_centerHorizontal="true"
+                android:text="key01" />
+
+            <ImageButton
+                android:id="@+id/key06"
+                style="@style/KeyBtn"
+                android:layout_below="@id/centerPoint"
+                android:layout_centerHorizontal="true"
+                android:text="key02" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/key07"
+                style="@style/KeyBtn"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/centerPoint"
+                android:text="key03" />
+
+            <ImageButton
+                android:id="@+id/key08"
+                style="@style/KeyBtn"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/centerPoint"
+                android:text="key04" />
+        </TableRow>
+    </TableLayout>
+
+    <ImageButton
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:padding="@dimen/padding_medium"
-        android:text="@string/hello_world"
+        android:text="kb"
         tools:context=".MainActivity" />
 
 </RelativeLayout>
