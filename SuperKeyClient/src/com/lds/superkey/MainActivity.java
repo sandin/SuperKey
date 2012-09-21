@@ -1,5 +1,7 @@
 package com.lds.superkey;
 
+import com.lds.superkey.model.SKMessage;
+
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -68,7 +70,10 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
 		Log.i(TAG, String.valueOf(keyCode));
-		Communication.sendMessage(keyCode);
+		SKMessage msg = new SKMessage();
+		msg.setType(SKMessage.TYPE_KEY);
+		msg.setKeyCode(keyCode);
+		Communication.sendMessage(msg);
 		return super.onKeyUp(keyCode, event);
 	}
 

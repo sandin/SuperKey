@@ -2,6 +2,7 @@ package com.lds.superkey.server;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -40,7 +41,11 @@ public class App {
                 int keyCode = translateKeyCode(message.getKeyCode());
 
                 Robot robot = new Robot();
-                robot.keyPress(keyCode);
+                try {
+                    robot.keyPress(keyCode);
+                } catch (IllegalArgumentException e) {
+                    // keyCode wrong
+                }
             } catch (AWTException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -63,12 +68,38 @@ public class App {
      */
     public static int translateKeyCode(int keyCode) {
         if (keyCode >= com.lds.superkey.model.KeyEvent.KEYCODE_A
-                && keyCode <= com.lds.superkey.model.KeyEvent.KEYCODE_Z)
+                && keyCode <= com.lds.superkey.model.KeyEvent.KEYCODE_Z) {
             return keyCode - com.lds.superkey.model.KeyEvent.KEYCODE_A + 'A';
-        else {
-            // TODO
+        }
+        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_UP) {
+            return KeyEvent.VK_KP_UP;
+        }
+        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_DOWN) {
+            return KeyEvent.VK_KP_DOWN;
+        }
+        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_LEFT) {
+            return KeyEvent.VK_KP_LEFT;
+        }
+        else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_RIGHT) {
+            return KeyEvent.VK_KP_RIGHT;
+        } else {
             return -1;
         }
+    }
+    
+    
+    private static boolean longPress = false; 
+    
+    public static void longPress(Robot rebot, int keyCode) {
+        longPress = true;
+        while (longPress) { // TODO: timer
+            rebot.keyPress(keyCode);
+        }
+    }
+    
+    public static void keyRelease(Robot robot, int keyCode) {
+        longPress = false;
+        robot.keyRelease(keyCode);
     }
 
 }

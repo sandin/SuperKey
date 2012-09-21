@@ -13,7 +13,7 @@ public class MockClient {
         
         SKMessage message = new SKMessage();
         message.setType(SKMessage.TYPE_KEY);
-        message.setKeyCode(12);
+        message.setKeyCode(com.lds.superkey.model.KeyEvent.KEYCODE_A);
         
         Socket s = new Socket(Config.DOMAIN, Config.PORT);
         OutputStream out = s.getOutputStream();
