@@ -15,7 +15,13 @@ public class SKMessage implements Serializable {
     private int y;
     
     public SKMessage() {
-        
+    }
+    
+    public static SKMessage valueOf(int keyCode) {
+        SKMessage msg = new SKMessage();
+        msg.setType(TYPE_KEY);
+        msg.setKeyCode(keyCode);
+        return msg;
     }
 
     public int getType() {

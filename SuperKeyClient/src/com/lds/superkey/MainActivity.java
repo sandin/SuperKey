@@ -85,13 +85,13 @@ public class MainActivity extends Activity {
 			// find the rotation-vector sensor
 			mRotationVectorSensor = mSensorManager
 					//.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
-					.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+					.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		}
 
 		public void start() {
 			// enable our sensor when the activity is resumed, ask for
 			// 10 ms updates.
-			mSensorManager.registerListener(this, mRotationVectorSensor, 10000);
+			mSensorManager.registerListener(this, mRotationVectorSensor, SensorManager.SENSOR_DELAY_GAME);
 		}
 
 		public void stop() {
@@ -108,19 +108,21 @@ public class MainActivity extends Activity {
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			 // that we received the proper event
-            if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             	 float x = event.values[0];
             	 float y = event.values[1];
             	 float z = event.values[2];
             	 
-            	if (x > 0.1) {
-            		if (x > 0) {
-            			System.out.println("------>" + x);
+            	if (Math.abs(y) > 1) {
+            		if (y > 0) {
+            			System.out.println("------> " + y);
+            			Communication.sendMessage(SKMessage.valueOf(KeyEvent.KEYCODE_DPAD_RIGHT));
             		} else {
-            			System.out.println("<------" + x);
+            			System.out.println("<------ " + y);
+            			Communication.sendMessage(SKMessage.valueOf(KeyEvent.KEYCODE_DPAD_LEFT));
             		}
             	} else {
-            		System.out.println("-------" + x);
+            		System.out.println("-------" + y);
             	}
             		
             	 

@@ -72,16 +72,16 @@ public class App {
             return keyCode - com.lds.superkey.model.KeyEvent.KEYCODE_A + 'A';
         }
         else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_UP) {
-            return KeyEvent.VK_KP_UP;
+            return KeyEvent.VK_UP;
         }
         else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_DOWN) {
-            return KeyEvent.VK_KP_DOWN;
+            return KeyEvent.VK_DOWN;
         }
         else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_LEFT) {
-            return KeyEvent.VK_KP_LEFT;
+            return KeyEvent.VK_LEFT;
         }
         else if (keyCode == com.lds.superkey.model.KeyEvent.KEYCODE_DPAD_RIGHT) {
-            return KeyEvent.VK_KP_RIGHT;
+            return KeyEvent.VK_RIGHT;
         } else {
             return -1;
         }
