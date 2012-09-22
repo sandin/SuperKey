@@ -14,9 +14,20 @@ public class SKMessage implements Serializable {
     private int x;
     private int y;
     
+    private int eventAction;
+    
     public SKMessage() {
         
     }
+    
+	public static SKMessage valueOf(int keyCode, int eventAction) {
+		SKMessage msg = new SKMessage();
+		msg.setType(TYPE_KEY);
+		msg.setKeyCode(keyCode);
+		msg.setEventAction(eventAction);
+		return msg;
+	}
+    
 
     public int getType() {
         return type;
@@ -50,12 +61,15 @@ public class SKMessage implements Serializable {
         this.y = y;
     }
 
-    @Override
-    public String toString() {
-        return "SKMessage [type=" + type + ", keyCode=" + keyCode + ", x=" + x
-                + ", y=" + y + "]";
-    }
-    
+	public int getEventAction() {
+		return eventAction;
+	}
+
+	public void setEventAction(int eventAction) {
+		this.eventAction = eventAction;
+	}
+
+
     
 
 }

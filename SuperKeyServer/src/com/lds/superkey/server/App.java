@@ -39,14 +39,19 @@ public class App {
                 InputStream in = socket.getInputStream();
                 ObjectInputStream ois = new ObjectInputStream(in);
                 SKMessage message = (SKMessage) ois.readObject();
-                System.out.println("Got message: " + message);
+                //System.out.println("Got message: " + message);
 
                 int keyCode = translateKeyCode(message.getKeyCode());
 
                 Robot robot = new Robot();
                 try {
-                    System.out.println("press key: " + KeyEvent.getKeyText(keyCode));
-                    robot.keyPress(keyCode);
+                    if (message.getEventAction() == 0) { // DOWN
+                    	System.out.println("press key: " + KeyEvent.getKeyText(keyCode));
+                    	robot.keyPress(keyCode);
+                    } else { // UP
+                    	System.out.println("release key: " + KeyEvent.getKeyText(keyCode));
+                    	robot.keyRelease(keyCode);
+                    }
                 } catch (IllegalArgumentException e) {
                     // keyCode wrong
                 }

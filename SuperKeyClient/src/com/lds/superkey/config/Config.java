@@ -2,7 +2,7 @@ package com.lds.superkey.config;
 
 public class Config {
 
-    public static final String DOMAIN = "192.168.1.150";
+    public static final String DOMAIN = "192.168.1.101";
     public static final int PORT = 1234;
     
     public static final int KEYCODE_SUPER_01 = 99901;
